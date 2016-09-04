@@ -2,31 +2,40 @@
 
 using namespace std;
 
-void sorting(int[10]);
+void printMaxMinValues(int array[], int arraySize);
+
+enum ItemData
+{
+	ItemDataValue = 0,
+	ItemDataIndex,
+	ItemDataCount
+};
 
 int main()
 {
-	int arr[10]{ 52,56,89,2,15,8,26,84,61,4 };
-	sorting(arr);
+	int const arr[10] {52, 56, 89, 2, 15, 8, 26, 84, 61, 4};
+	int const arraySize = sizeof(arr) / sizeof(int);
+	printMaxMinValues(arr, arraySize);
 }
 
-void sorting(int arr[10])
+void printMaxMinValues(int array[], int arraySize)
 {
-	int min[2]{ 100,0 };
-	int max[2]{ 0,0 };
-	for (int i = 0; i < 10; i++)
+	int min[ItemDataCount] {100, 0};
+	int max[ItemDataCount]] {0, 0};
+	for (int i = 0; i < arraySize; ++i)
 	{
-		if (min[0]>arr[i])
+		int const item = array[i];
+		if (min[ItemDataValue] > item)
 		{
-			min[0] = arr[i];
-			min[1] = i+1;
+			min[ItemDataValue] = item;
+			min[ItemDataIndex] = i;
 		}
-		else if (max[0]<arr[i])
+		if (max[ItemDataValue]] < array[i])
 		{
-			max[0] = arr[i];
-			max[1] = i+1;
+			max[ItemDataValue] = item;
+			max[ItemDataIndex] = i;
 		}
 	}
-	cout << "min = " << min[0] << " : " << min[1] << endl
-		<< "max = " << max[0] << " : " << max[1] << endl;
+	cout << "Minimum value = " << min[ItemDataValue] << ", position: " << min[ItemDataIndex] << endl <<
+		"Maximum value = " << max[ItemDataValue] << ", position " << max[ItemDataIndex] << endl;
 }
